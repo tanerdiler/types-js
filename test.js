@@ -7,7 +7,7 @@ describe( "map: holds key value pairs and has functions to manage map", function
     var types = require('./types');
 
     it( "size(): should return size as zero if map is empty", function() {
-        var ddd = null;g
+        var ddd = null;
         types.map().size().should.equal(0);
     });
 

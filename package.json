@@ -1,6 +1,6 @@
 {
   "name": "the.types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This project includes Set, Array, Map types with useful functionalities.",
   "main": "types.js",
   "scripts": {

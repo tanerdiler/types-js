@@ -1,0 +1,29 @@
+{
+  "name": "types",
+  "version": "1.0.0",
+  "description": "This project includes Set, Array, Map types with useful functionalities.",
+  "main": "types.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanerdiler/types.js.git"
+  },
+  "keywords": [
+    "set",
+    "array",
+    "map",
+    "collections"
+  ],
+  "author": "Taner Diler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tanerdiler/types.js/issues"
+  },
+  "homepage": "https://github.com/tanerdiler/types.js#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}

@@ -4,7 +4,7 @@ chai.should();
 
 describe( "map: holds key value pairs and has functions to manage map", function() {
 
-    var types = require('./types');
+    var types = require('./the.types');
 
     it( "size(): should return size as zero if map is empty", function() {
         var ddd = null;
@@ -104,7 +104,7 @@ describe( "map: holds key value pairs and has functions to manage map", function
 
 describe( "set: a collection that contains no duplicate elements", function() {
 
-    var types = require('./types');
+    var types = require('./the.types');
 
     it( "size(): should return size as zero if set is empty", function() {
         var ddd = null;
@@ -166,7 +166,7 @@ describe( "set: a collection that contains no duplicate elements", function() {
 
 describe( "array: is a wrapper of native array", function() {
 
-    var types = require('./types');
+    var types = require('./the.types');
 
     it( "add(item): should append item to the end of this array", function() {
         var array = types.array();

@@ -134,24 +134,6 @@ var TheArray = function (native_array) {
         }
     }
 
-    this.toString = function (stringFunction) {
-        var string = "";
-        var separator = "";
-        this.iterate(function (index, item) {
-            var strOfItem = item;
-            if (_.not(_.isNull(stringFunction))) {
-                strOfItem = stringFunction(item);
-            }
-            string += separator + strOfItem;
-            separator = ",";
-        });
-        return string;
-    }
-
-    this.toJSon = function (func) {
-        return "[" + this.toString(func) + "]";
-    }
-
     this.frequencies = function () {
         var frequencies = new TheSet();
         this.iterate(function (index, item) {
@@ -210,6 +192,16 @@ var TheArray = function (native_array) {
             }
         });
         return found;
+    }
+
+	this.join = function (delimiter) {
+        var joinedStr = '';
+        var separator = '';
+        this.iterate(function (index, value) {
+            joinedStr += separator + value ;
+            separator = delimiter;
+        });
+        return joinedStr;
     }
 }
 

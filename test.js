@@ -100,6 +100,84 @@ describe( "map: holds key value pairs and has functions to manage map", function
         map.put('key5', 'test5');
         map.join(":", ",").should.equal("key1:test1,key2:test2,key3:test3,key4:test4,key5:test5");
     });
+
+    it("iterate(fnc): iterates key/value pairs and send pairs into fnc", function()
+    {
+        var map = types.map();
+        map.put('key1', 'test_1');
+        map.put('key2', 'test_2');
+        map.put('key3', 'test_3');
+        map.put('key4', 'test_4');
+        map.put('key5', 'test_5');
+        var oddValues = types.array();
+        map.iterate(function(key, value)
+        {
+            var no = value.split("_")[1];
+            if(no % 2 == 0){
+                oddValues.add(value);
+            }
+        });
+        oddValues.length().should.equal(2);
+    });
+
+    it("iterate(fnc): breaks iteration when fnc returns false", function()
+    {
+        var map = types.map();
+        map.put('key1', 'test_1');
+        map.put('key2', 'test_2');
+        map.put('key3', 'break');
+        map.put('key4', 'test_4');
+        map.put('key5', 'test_5');
+
+        var valueArray = types.array();
+        map.iterate(function(key, value)
+        {
+            if(value === "break")
+            {
+                return false;
+            }
+
+            valueArray.add(value);
+        });
+
+        valueArray.length().should.equal(2);
+    });
+
+    it("iterate(fnc): while returning true", function()
+    {
+        var map = types.map();
+        map.put('key1', 'test_1');
+        map.put('key2', 'test_2');
+        map.put('key3', 'break');
+        map.put('key4', 'test_4');
+        map.put('key5', 'test_5');
+
+        var valueArray = types.array();
+        map.iterate(function(key, value)
+        {
+            valueArray.add(value);
+            return true
+        });
+
+        valueArray.length().should.equal(5);
+    });
+
+    it( "iterate(fnc): should not iterate properties not owned", function() {
+        var obj = {
+            hasOwnProperty : function()
+            {
+                return false;
+            },
+            firstname: 'test1',
+            lastname: 'test2'
+        };
+        var array = types.array();
+        types.map(obj).iterate(function(key, value){
+            array.add(value);
+        });
+        array.length().should.equal(0);
+    });
+
 });
 
 describe( "set: a collection that contains no duplicate elements", function() {
@@ -336,6 +414,14 @@ describe( "array: is a wrapper of native array", function() {
         array_1.containsAll(array_2).should.equals(false);
     });
 
+    it( "join(delimiter): should join items with specified delimiter", function() {
+        var array_1 = types.array();
+        array_1.add("test_1");
+        array_1.add("test_2");
+        array_1.add("test_3");
+        array_1.add("test_4");
 
+        array_1.join(",").should.equals("test_1,test_2,test_3,test_4");
+    });
 
 });
